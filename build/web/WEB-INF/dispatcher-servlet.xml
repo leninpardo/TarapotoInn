@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                
+                  <!--con respecto a la web-->
+                <prop key="index">indexController</prop>
+                <prop key="qs">QsController</prop>
+                <prop key="servicio">ServicioController</prop>
+                <prop key="tarifa">TarifaController</prop>
+                <!--for Estadia-->
+                <prop key="Config">ConfigController</prop>
+                   <prop key="TipoHabitacion">TipoHabitacionController</prop>
+                   <prop key="Habitacion">HabitacionController</prop>
+                    <prop key="Cliente">ClienteController</prop>
+                <prop key="Estadia">EstadiaController</prop>
+                <!--end estadia-->
+                <!--init segurit-->
+                 <prop key="Perfil">PerfilController</prop>
+                  <prop key="Modulo">ModuloController</prop>
+                      <prop key="Permiso">PermisoController</prop>
+                <!--end-->
+                   <prop key="Usuario">UsuarioController</prop>
+                 <prop key="Profesion">ProfesionController</prop>
+                  <prop key="Almacen">AlmacenController</prop>
+                   <prop key="Ubigeo">UbigeoController</prop>
+                     <prop key="Ubicacion">UbicacionController</prop>
+                     <prop key="Producto">ProductoController</prop>
+                      <prop key="TipoProducto">TipoProductoController</prop>
+                      <prop key="TipoComprobante">TipoComprobanteController</prop>
+                        <prop key="Proveedor">ProveedorController</prop>
+                          <prop key="TipoRuta">TipoRutaController</prop>
+                           <prop key="TipoServicio">TipoServicioController</prop>
+                           <prop key="ItemServicio">ItemServicioController</prop>
+                           <prop key="Paquete">PaqueteController</prop>
+                           <prop key="Compra">CompraController</prop>
+                            <prop key="Eliminar">EliminarController</prop>
+                            <prop key="Caja">CajaController</prop>
+                            <prop key="CuotaPago">CuotaPagoController</prop>
+                             <prop key="CuotaCobro">CuotaCobroController</prop>
+                             
+                         
+                   
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/view/"
+          p:suffix=".jsp" />
+
+    <!--
+    The index controller.
+    -->
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="web/index" />
+            <bean name="QsController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="web/qs" />
+          
+            <bean name="ServicioController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="web/servicios" />
+          
+            <bean name="TarifaController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="web/tarifa" />
+            
+            <bean name="ConfigController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="Config" />
+            
+            <!--definir las action for estadia-->
+            <bean id="TipoHabitacionController" class="Controller.TipoHabitacionController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+     <bean id="HabitacionController" class="Controller.HabitacionController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+      <bean id="ClienteController" class="Controller.ClienteController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+      </bean> 
+            
+             <bean id="EstadiaController" class="Controller.EstadiaController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+        <!--end estaadia-->   
+        <bean id="PerfilController" class="Controller.PerfilController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>  
+      <bean id="ModuloController" class="Controller.ModuloController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+     <bean id="PermisoController" class="Controller.PermisoController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+      <bean id="UsuarioController" class="Controller.UsuarioController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>  
+    
+     <bean id="ProfesionController" class="Controller.ProfesionController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean> 
+    
+     <bean id="AlmacenController" class="Controller.AlmacenController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean> 
+    
+     <bean id="UbigeoController" class="Controller.UbigeoController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+     </bean>
+          <bean id="UbicacionController" class="Controller.UbicacionController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean> 
+    
+         <bean id="ProductoController" class="Controller.ProductoController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean> 
+     <bean id="TipoProductoController" class="Controller.TipoProductoController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean> 
+
+ <bean id="ProveedorController" class="Controller.ProveedorController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean> 
+    
+     <bean id="TipoComprobanteController" class="Controller.TipoComprobanteController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+        <bean id="TipoRutaController" class="Controller.TipoRutaController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+       <bean id="TipoServicioController" class="Controller.TipoServicioController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+          <bean id="ItemServicioController" class="Controller.ItemServicioController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+       <bean id="PaqueteController" class="Controller.PaqueteController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+        <bean id="CompraController" class="Controller.CompraController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+     <bean id="EliminarController" class="Controller.EliminarController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+  
+    <bean id="CajaController" class="Controller.CajaController">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+      <bean id="CuotaPagoController" class="Controller.CuotaPago">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+     <bean id="CuotaCobroController" class="Controller.CuotaCobro">
+        <property name="methodNameResolver">
+            <bean class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+                <property name="paramName" value="option"/>
+            </bean>
+        </property>
+    </bean>
+    
+</beans>

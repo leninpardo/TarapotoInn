@@ -1,0 +1,35 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.TipoHabitacion;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+
+/**
+ *
+ * @author lenin
+ */
+public class TipoHabitacionController extends MultiActionController {
+    String list[][]=null,nom[]=null;
+    public ModelAndView index(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+                   ModelAndView mv=new ModelAndView();
+                 
+                   TipoHabitacion th=new TipoHabitacion();
+                   list=th.index();
+                  nom=th.getColumnIndex();
+                    mv.addObject("url","TipoHabitacion");
+                    mv.addObject("title","Tipo de Habitaciones registrados");
+                     mv.addObject("cant",nom.length);
+                     mv.addObject("nom",nom);
+                   mv.addObject("list",list );
+                   mv.setViewName("TipoHabitacion/index");
+		return  mv;
+
+	}
+}
